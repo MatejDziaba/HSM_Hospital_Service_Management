@@ -7,9 +7,9 @@ import clsx from "clsx";
 import Image from "next/image";
 
 const navLinks = [
-  { name: "Admin", href: "Admin"},
-  { name: "Lekár", href: "/Pages/Lekar"},
-  { name: "Pobyt", href: "/Pages/Pobyt"},
+  { name: "Admin", href: "Admin" },
+  { name: "Lekár", href: "/Pages/Lekar" },
+  { name: "Pobyt", href: "/Pages/Pobyt" },
   { name: "Správca", href: "/Pages/Spravca" },
   { name: "Obsluha", href: "/Pages/Obsluha" },
   { name: "O nás", href: "/Pages/Onas" },
@@ -28,45 +28,44 @@ export const Navbar: React.FC = () => {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
   const isObsluhaPage = pathname === "/Pages/Obsluha";
 
-  // Filter links: skry link Obsluha len na Obsluha stránke
   const filteredLinks = navLinks.filter(
     (link) => !(isObsluhaPage && link.name === "Obsluha")
   );
 
   return (
     <nav className="w-full bg-white shadow-md fixed top-0 left-0 z-50">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="container mx-auto px-4 py-2 md:py-3 flex items-center justify-between">
         {/* Čas vľavo len na Obsluha */}
         {isObsluhaPage ? (
-          <div className="text-4xl font-bold text-gray-700 font-large">{currentTime.toLocaleTimeString()}</div>
-        ) : (
-          <div></div> // prázdny div pre zachovanie spacingu
-        )}
-
-        {isObsluhaPage ? (
-          <div className="flex justify-center flex-1">
-            <Link href="/Pages/Home" onClick={() => setMenuOpen(false)}>
-                <Image src="/logo.png" alt="Logo" width={114} height={114} />
-            </Link>
+          <div className="text-xl md:text-2xl font-bold text-gray-700">
+            {currentTime.toLocaleTimeString()}
           </div>
         ) : (
-        <div className="flex justify-left flex-1">
+          <div></div>
+        )}
+
+        {/* Logo - flex-1 aby bolo vždy centrované */}
+        <div className={clsx("flex-1 flex justify-center items-center")}>
           <Link href="/Pages/Home" onClick={() => setMenuOpen(false)}>
-            <Image src="/logo.png" alt="Logo" width={114} height={114} />
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={80} // menšie na mobiloch
+              height={80} // menšie na mobiloch
+              className="md:w-[114px] md:h-[114px] w-[60px] h-[60px] object-contain"
+            />
           </Link>
         </div>
-        )}
-        
 
-        {/* Odhlásiť sa alebo menu */}
-        <div className="flex items-center space-x-4">
+        {/* Ostatné odkazy / tlačidlo odhlásenia */}
+        <div className="flex items-center space-x-2 md:space-x-4">
           {!isObsluhaPage &&
             filteredLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={clsx(
-                  "text-gray-600 hover:text-blue-600 transition",
+                  "text-gray-600 hover:text-blue-600 transition text-sm md:text-base",
                   pathname === link.href && "text-blue-600 font-semibold"
                 )}
               >
@@ -77,13 +76,13 @@ export const Navbar: React.FC = () => {
           {isObsluhaPage && (
             <button
               onClick={() => alert("Odhlásenie")}
-              className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition"
+              className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition text-sm md:text-base"
             >
               Odhlásiť sa
             </button>
           )}
 
-          {/* Hamburger button for mobile */}
+          {/* Hamburger pre mobil */}
           <button
             onClick={toggleMenu}
             className="md:hidden relative w-8 h-8 flex flex-col justify-center items-center group"
@@ -119,16 +118,16 @@ export const Navbar: React.FC = () => {
       <div
         className={clsx(
           "md:hidden overflow-hidden bg-white shadow-md origin-top transition-[max-height,padding] duration-500 ease-in-out",
-          menuOpen ? "max-h-[500px] py-4 px-6" : "max-h-0 py-0 px-6"
+          menuOpen ? "max-h-[500px] py-4 px-4" : "max-h-0 py-0 px-4"
         )}
       >
-        <ul className="flex flex-col space-y-4">
+        <ul className="flex flex-col space-y-3">
           {filteredLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
                 className={clsx(
-                  "block text-gray-700 hover:text-blue-600 transition font-medium text-lg",
+                  "block text-gray-700 hover:text-blue-600 transition font-medium text-base",
                   pathname === link.href && "text-blue-600 font-semibold"
                 )}
                 onClick={() => setMenuOpen(false)}
@@ -140,13 +139,13 @@ export const Navbar: React.FC = () => {
 
           {isObsluhaPage && (
             <>
-              <li className="text-gray-700 font-medium text-left">
+              <li className="text-gray-700 font-medium text-left text-base">
                 {currentTime.toLocaleTimeString()}
               </li>
               <li>
                 <button
                   onClick={() => alert("Odhlásenie")}
-                  className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition w-full"
+                  className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition w-full text-base"
                 >
                   Odhlásiť sa
                 </button>
