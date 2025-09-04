@@ -27,6 +27,7 @@ export default function PristupPage() {
       } else {
         setStatus("Nepodarilo sa odoslať žiadosť, skúste znova.");
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setStatus("Nepodarilo sa odoslať žiadosť, skúste znova.");
     }
