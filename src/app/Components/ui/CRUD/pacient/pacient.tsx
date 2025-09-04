@@ -5,7 +5,7 @@ import { FaSearch, FaTrash, FaPlus, FaEdit } from "react-icons/fa";
 import PacientADD from "./pacientADD";
 import PacientUPDATE from "./pacientUPDATE";
 import PacientDELETE from "./pacientDELETE";
-import { normalizeText, validateRodneCislo } from "@/app/utils/page";
+import { normalizeText, validateRodneCislo } from "@/app/utils/validation";
 
 export default function PacientiComponent() {
   const [pacienti, setPacienti] = useState<IPacient[]>([]);
@@ -22,12 +22,12 @@ export default function PacientiComponent() {
     // Mock dáta
     setPacienti([
       {
-        id: 1, meno: "Jozef", priezvisko: "Novjiinnák", oddelenie: "Chirurgia", rodneCislo: "800101/1234",
+        id: 1, meno: "Jozef", priezvisko: "Novák", oddelenie: "Chirurgia", rodneCislo: "800101/1234",
         medicines: [], events: [],
         pobyt: [{ id: 1, cisloIzby: "101", zaciatok: "2023-01-01", ukoncene: "" }]
       },
       {
-        id: 2, meno: "Ankjkna", priezvisko: "Kováčová", oddelenie: "Interné", rodneCislo: "755212/5678",
+        id: 2, meno: "Anna", priezvisko: "Kováčová", oddelenie: "Interné", rodneCislo: "755212/5678",
         medicines: [], events: [],
         pobyt: [{ id: 2, cisloIzby: "202", zaciatok: "2023-01-05", ukoncene: "" }]
       }

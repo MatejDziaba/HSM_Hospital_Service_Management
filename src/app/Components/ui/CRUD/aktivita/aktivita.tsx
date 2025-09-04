@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch, FaTrash, FaPlus, FaEdit } from "react-icons/fa";
 import { IAktivita, IPacient } from "../../../../Interfaces/index";
-import { normalizeText } from "@/app/utils/page";
+import { normalizeText } from "@/app/utils/validation";
 
 export default function AktivitaComponent() {
   const [pacienti, setPacienti] = useState<IPacient[]>([]);
